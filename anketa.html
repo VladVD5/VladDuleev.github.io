@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anket Form</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+<form id="anketForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" required><br>
+    
+    <label for="gender">Gender:</label>
+    <select id="gender" required>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select><br>
+    
+    <label for="skills">Skills (Math and Programming):</label>
+    <input type="checkbox" id="mathSkill"> Math
+    <input type="checkbox" id="programmingSkill"> Programming<br>
+    
+    <label for="otherSkills">Other Skills:</label>
+    <input type="text" id="otherSkills"><br>
+    
+    <input type="submit" value="Submit" onclick="check(event)">
+</form>
+
+<p id="result" class="hidden">Congratulations! You are accepted.</p>
+
+<script>
+    function check(event) {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const age = parseInt(document.getElementById("age").value);
+        const gender = document.getElementById("gender").value;
+        const mathSkill = document.getElementById("mathSkill").checked;
+        const programmingSkill = document.getElementById("programmingSkill").checked;
+        const otherSkills = document.getElementById("otherSkills").value;
+        
+        if (!/^[a-zA-Z]+$/.test(name)) {
+            alert("Invalid name. Please enter only text.");
+            return;
+        }
+        
+        if (isNaN(age) || age < 0) {
+            alert("Invalid age. Please enter a non-negative integer.");
+            return;
+        }
+        
+        if (gender !== "M" && gender !== "F") {
+            alert("Invalid gender. Please choose either 'M' or 'F'.");
+            return;
+        }
+        
+        if (mathSkill && programmingSkill) {
+            document.getElementById("result").classList.remove("hidden");
+            document.getElementById("anketForm").classList.add("hidden");
+        } else {
+            alert("You need skills in Math and Programming to be accepted.");
+        }
+    }
+</script>
+</body>
+</html>

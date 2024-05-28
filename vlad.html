@@ -1,0 +1,295 @@
+<!Doctype html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Сайт Влада</title>
+</head>
+<body>
+	<div class="flex">
+		<p class="resume"><a href="vlad.html"> Резюме </a></p>
+		<p class="anketa"><a href="anketa.html"> Анкета </a></p>
+		<p class="anketa"><a href="raduga.html"> Радуга </a></p>
+	<div class="mainField">
+		<div class="resumeField">
+			<div class="resumeImage">
+				<img src="img/resume_image.png" alt="Resume Photo">
+			</div>
+			<div class="resumeDetails">
+				<h1>Резюме</h1>
+				<p><strong>Имя:</strong> <span id="fioName">Владислав</span></p>
+                <p><strong>Фамилия:</strong> <span id="fioSurname">Дулёв</span></p>
+                <input type="text" id="newName" placeholder="Новое имя">
+                <input type="text" id="newSurname" placeholder="Новая фамилия">
+                <button onclick="changeName()">Изменить имя</button>
+                <button onclick="changeSurname()">Изменить фамилию</button>
+                <button onclick="askAge()">Сколько вам лет</button>
+			</div>
+		</div>
+		
+		<div class="calculationsField">
+            <h2>Сравнение двух чисел</h2>
+            <div class="calculationsInput">
+                <input type="number" id="number1" placeholder="Введите первое число">
+                <input type="number" id="number2" placeholder="Введите второе число">
+            </div>
+            <div class="calculationsButtons">
+                <button onclick="compareNumbers()">Сравнить числа</button>
+				<button onclick="changeColor()">Изменить цвет</button>
+            </div>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+	
+	<script>
+        function changeName() {
+            var newName = document.getElementById("newName").value;
+            if (newName) {
+                document.getElementById("fioName").innerText = newName;
+            } else {
+                alert("Пожалуйста, введите своё имя.");
+            }
+        }
+
+        function changeSurname() {
+            var newSurname = document.getElementById("newSurname").value;
+            if (newSurname) {
+                document.getElementById("fioSurname").innerText = newSurname;
+            } else {
+                alert("Пожалуйста, введите свою фамилию.");
+            }
+        }
+
+        function askAge() {
+            let age;
+            while (true) {
+                age = prompt("Пожалуйста, введите ваш возраст:");
+                if (age === null) {
+                    alert("Ввод отменен, попробуйте снова.");
+                    continue;
+                }
+                if (confirm("Вам действительно " + age + " лет?")) {
+                    alert("Возраст подтвержден.");
+                    break;
+                } else {
+                    alert("Попробуйте ввести возраст снова.");
+                }
+            }
+        }
+		
+		function compareNumbers() {
+			const number1 = document.getElementById('number1').value;
+			const number2 = document.getElementById('number2').value;
+			const resultText = document.getElementById('result');
+	
+			if (number1 > number2) {
+				resultText.textContent = number1 + " больше чем " + number2;
+				} 
+			else if (number1 < number2) {
+				resultText.textContent = number1 + " меньше чем " + number2;
+				} 
+			else {
+				resultText.textContent = "Числа равны";
+				}
+		}
+		function changeColor() {
+			var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+			document.body.style.backgroundColor = randomColor;
+    }
+    </script>
+	<style>
+		@font-face {
+		font-family: 'VladFont';
+		src: url("font/vladfont.otf")
+		}
+        body {
+            font-family: VladFont;
+            background: #000000;
+        }
+		body, input{
+			font-family: VladFont;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+		}
+		 .resume {
+			margin: 10px 10px 10px 50px;
+			color: #c2a500;
+			font-weight: bolder;
+			font-size: 46px;
+		}
+
+		.resume:hover {
+			margin: 10px 10px 10px 50px;
+			font-weight: bolder;
+			font-size: 46px;
+		}
+
+		.anketa {
+			margin: 10px 50px 10px 50px;
+			font-weight: bolder;
+			font-style: italic;
+			font-size: 46px;
+			color: #c2a500;
+		}
+
+		.anketa:hover {
+			margin: 10px 50px 10px 50px;
+			font-weight: bolder;
+			font-style: italic;
+			font-size: 46px;
+		}
+		
+		.raduga {
+			margin: 10px 50px 10px 50px;
+			font-weight: bolder;
+			font-style: italic;
+			font-size: 46px;
+			color: #c2a500;
+		}
+
+		.raduga:hover {
+			margin: 10px 50px 10px 50px;
+			font-weight: bolder;
+			font-style: italic;
+			font-size: 46px;
+		}
+		
+        .mainField {
+            max-width: 1000px;
+            max-height: 2000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(85, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 6px 9px rgba(135, 101, 0, 1);
+        }
+        .resumeField {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .resumeImage {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .resumeImage img {
+			padding: 5px;
+			background: #002c69;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+		
+        .resumeDetails {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+        .resumeDetails h1 {
+            color: #00bf53;
+            font-size: 50px;
+            margin-bottom: 10px;
+            text-shadow: 6px 9px 6px rgba(135, 101, 0, 0.7);
+		}
+
+        .resumeDetails p {
+            color: #c2a500;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .resumeDetails input[type="text"] {
+			font-family: VladFont;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #957272;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+        .resumeDetails button {
+			font-family: VladFont;
+            padding: 10px 20px;
+            background-color: #b40202;
+            color: #002c69;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+        }
+		
+        .resumeDetails button:hover {
+            background-color: #00bf53;
+			color: #c2a500;
+        }
+        .calculationsField {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .calculationsField h2 {
+            color: #c2a500;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .calculationsInputs {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px;
+        }
+        .calculationsInputs input[type="number"] {
+			font-family: VladFont;
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #413e3e;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .calculationsButtons {
+			font-family: VladFont;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .calculationsButtons button {
+			font-family: VladFont;
+            padding: 10px 20px;
+            background-color: #b40202;
+            color: #002c69;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+        }
+        .calculationsButtons button:hover {
+            background-color: #00bf53;
+			color: #c2a500;
+        }
+        .result {
+			color: #c2a500;
+            font-weight: bold;
+            margin-top: 20px;
+			font-size: 20px;
+        }
+		.randomColorButton {
+			background-color: #04AA6D;
+			border: none;
+			color: white;
+			padding: 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 50%;
+    }
+    </style>
+</body>
+<body>

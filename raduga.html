@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    td {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <table id="rainbowTable">
+    <tr>
+      <td style="background-color: red;"></td>
+      <td style="background-color: orange;"></td>
+      <td style="background-color: yellow;"></td>
+      <td style="background-color: green;"></td>
+      <td style="background-color: blue;"></td>
+      <td style="background-color: indigo;"></td>
+      <td style="background-color: violet;"></td>
+    </tr>
+  </table>
+
+  <button onclick="moveRainbow()">Переместить радугу</button>
+  <button onclick="startAutoMove()">Автоматическое перемещение</button>
+  <button onclick="stopAutoMove()">Остановить автоматическое перемещение</button>
+
+  <script>
+    var table = document.getElementById("rainbowTable");
+    var cells = table.getElementsByTagName("td");
+    var currentIndex = 0;
+    var intervalId;
+
+    function moveRainbow() {
+      cells[currentIndex].style.backgroundColor = "";
+      currentIndex = (currentIndex + 1) % cells.length;
+      cells[currentIndex].style.backgroundColor = getRainbowColor(currentIndex);
+    }
+
+    function startAutoMove() {
+      intervalId = setInterval(moveRainbow, 300);
+    }
+
+    function stopAutoMove() {
+      clearInterval(intervalId);
+    }
+
+    function getRainbowColor(index) {
+      var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+      return colors[index % colors.length];
+    }
+  </script>
+</body>
+</html>
